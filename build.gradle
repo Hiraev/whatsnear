@@ -1,0 +1,64 @@
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.google.com/"
+    }
+}
+
+allprojects {
+    repositories {
+        // ..
+        maven { url 'https://jitpack.io' }
+    }
+}
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+}
+
+apply plugin: "com.android.application"
+
+android {
+    dependencies {
+        implementation 'com.yandex.android:mapkit:3.2.0'
+        implementation 'com.yandex.android:search:3.2.0'
+        implementation 'com.yandex.android:directions:3.2.0'
+        implementation 'com.yandex.android:transport:3.2.0'
+        implementation 'com.yandex.android:places:3.2.0'
+        implementation 'com.sothree.slidinguppanel:library:3.4.0'
+        implementation 'com.android.support:appcompat-v7:28.0.0'
+        implementation 'com.android.support:design:28.0.0'
+        implementation 'com.trafi:anchor-bottom-sheet-behavior:0.13-alpha'
+    }
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.5.1"
+}
+
